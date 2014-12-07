@@ -11,14 +11,11 @@ using Dargon.Management.Controllers;
 
 namespace Dargon.Management.Views {
    public partial class MobView : UserControl {
-      private IMobsController controller;
-
       public MobView() {
          InitializeComponent();
       }
 
       public void SetController(IMobsController controller) {
-         this.controller = controller;
          mobOperationsView.SetController(controller);
       }
 

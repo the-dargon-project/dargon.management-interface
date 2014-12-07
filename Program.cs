@@ -11,14 +11,22 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System;
+using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Windows.Forms;
+using Dargon.Management.Models;
+using Dargon.Management.Utilities;
+using Dargon.Management.ViewModels;
+using ItzWarty;
 
 namespace Dargon.Management {
    class Program {
       [STAThread]
       static void Main(string[] args) {
          Application.EnableVisualStyles();
+
+         // args = new[] { "localhost:31000" };
 
          InitializeLogging();
 
@@ -35,20 +43,47 @@ namespace Dargon.Management {
          ISocketFactory socketFactory = new SocketFactory(tcpEndPointFactory, networkingInternalFactory);
          INetworkingProxy networkingProxy = new NetworkingProxy(socketFactory, tcpEndPointFactory);
 
-         const int port = 31000;
-         var parameterViewFactory = new ParameterViewFactory();
-         var serverEndpoint = tcpEndPointFactory.CreateLoopbackEndPoint(port);
-         IConnectedSocket clientSocket = ConnectToServer(networkingProxy, serverEndpoint);
-         if (clientSocket == null) {
-            MessageBox.Show("Unable to connect to server at given port!");
-         } else {
-            var client = new ManagementClient(collectionFactory, threadingProxy, pofSerializer, clientSocket);
-            var rootController = new RootController(client, pofContext);
-            var window = new MainWindow(rootController, parameterViewFactory);
-            window.Initialize();
-            rootController.Initialize();
-            Application.Run(window);
+         ManagementInterfaceConfiguration configuration;
+         if (!TryParseArguments(args, out configuration)) {
+            return;
          }
+
+         // initialize management dependencies
+         var managementClientFactory = new ManagementClientFactory(collectionFactory, threadingProxy, pofSerializer, networkingProxy);
+
+         // initialize viewmodel dependencies
+         var mobsRootViewModel = new MobsRootViewModel();
+         var connectionStateViewModel = new ConnectionStateViewModel();
+
+         // initialize controller dependencies
+         var mobsController = new MobsController(mobsRootViewModel, pofContext);
+         var connectionController = new ConnectionController(networkingProxy, managementClientFactory, connectionStateViewModel);
+         var rootController = new RootController(mobsRootViewModel, mobsController, connectionController);
+         rootController.Initialize();
+
+         // initialize views
+         var parameterViewFactory = new ParameterViewFactory();
+         var connectionWindow = new ConnectionWindow(connectionController, configuration, networkingProxy);
+         var window = new MainWindow(rootController, parameterViewFactory, connectionWindow, connectionStateViewModel);
+
+         // start main windowing thread
+         window.Initialize();
+         Application.Run(window);
+      }
+
+      private static bool TryParseArguments(string[] args, out ManagementInterfaceConfiguration configuration) {
+         var input = args.Join(" ");
+         var inputTokens = input.QASS(' ');
+         configuration = new ManagementInterfaceConfiguration();
+         for (var i = 0; i < inputTokens.Length; i++) {
+            if (!inputTokens[i].StartsWith("-")) {
+               configuration.SetDestination(inputTokens[i]);
+            } else {
+               Console.Error.WriteLine("Unexpected parameter " + inputTokens[i]);
+               return false;
+            }
+         }
+         return true;
       }
 
       private static IConnectedSocket ConnectToServer(INetworkingProxy networkingProxy, ITcpEndPoint endpoint) {
@@ -64,6 +99,7 @@ namespace Dargon.Management {
                   Console.Write("Connecting.");
                } else {
                   Console.Write(".");
+                  Thread.Sleep(500);
                }
             }
          }

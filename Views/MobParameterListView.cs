@@ -31,7 +31,7 @@ namespace Dargon.Management.Views {
             }
 
             var model = models[i];
-            var view = new MobParameterView(model, parameterViewFactory);
+            var view = parameterViewFactory.CreateParameterView(model);
             container.Add(view);
          }
       }

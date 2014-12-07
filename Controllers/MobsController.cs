@@ -13,15 +13,14 @@ namespace Dargon.Management.Controllers {
       private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
       public event InvocationResultEventHandler InvocationResult;
-      private readonly IManagementClient client;
       private readonly MobsRootViewModel mobsRootViewModel;
       private readonly IPofContext pofContext;
       private readonly MobsTreeViewModel mobsTreeViewModel;
       private readonly Dictionary<Guid, MobModel>  mobModelsByMobGuid = new Dictionary<Guid, MobModel>();
       private readonly object synchronization = new object();
+      private IManagementClient client;
 
-      public MobsController(IManagementClient client, MobsRootViewModel mobsRootViewModel, IPofContext pofContext) {
-         this.client = client;
+      public MobsController(MobsRootViewModel mobsRootViewModel, IPofContext pofContext) {
          this.mobsRootViewModel = mobsRootViewModel;
          this.pofContext = pofContext;
          this.mobsTreeViewModel = mobsRootViewModel.TreeModel;
@@ -31,7 +30,8 @@ namespace Dargon.Management.Controllers {
       public MobsRootViewModel RootViewModel { get { return mobsRootViewModel; } }
       public MobsTreeViewModel TreeViewModel { get { return mobsTreeViewModel; } }
 
-      public void Initialize() {
+      public void HandleClientInitialized(IManagementClient client) {
+         this.client = client;
          client.RemoteManageableObjectAdded += HandleRemoteManageableObjectAdded;
          client.RemoteManageableObjectRemoved += HandleRemoteManageableObjectRemoved;
          client.RemoteManageableObjectOperationsResult += HandleRemoteManageableObjectOperationsResult;

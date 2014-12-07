@@ -4,7 +4,11 @@ using System.Windows.Forms;
 
 namespace Dargon.Management.Views {
    public class ParameterViewFactory {
-      public UserControl CreateView(MobOperationParameterViewModel viewModel) {
+      public UserControl CreateParameterView(MobOperationParameterViewModel viewModel) {
+         return new MobParameterView(viewModel, CreateParameterValueView(viewModel));
+      }
+
+      private UserControl CreateParameterValueView(MobOperationParameterViewModel viewModel) {
          switch ((ReservedTypeId)viewModel.PofTypeId) {
             case ReservedTypeId.TYPE_STRING:
                return new MobStringParameterValueView(viewModel);

@@ -1,4 +1,5 @@
 ﻿using System;
+using Dargon.Management.Client;
 using Dargon.Management.ViewModels;
 
 namespace Dargon.Management.Controllers {
@@ -6,7 +7,7 @@ namespace Dargon.Management.Controllers {
       event InvocationResultEventHandler InvocationResult;
       MobsRootViewModel RootViewModel { get; }
       MobsTreeViewModel TreeViewModel { get; }
-      void Initialize();
+      void HandleClientInitialized(IManagementClient client);
       void DisplayMob(Guid mobGuid);
       void Invoke(Guid mobGuid, MobOperationViewModel operationViewModel);
       string GetPofTypeIdName(int returnPofTypeId);
