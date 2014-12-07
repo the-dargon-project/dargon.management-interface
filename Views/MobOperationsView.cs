@@ -58,7 +58,7 @@ namespace Dargon.Management.Views {
 
       private void HandleInvocationResult(IMobsController sender, object result) {
          BeginInvoke(new Action(() => {
-            MessageBox.Show(this, result.ToString());
+            MessageBox.Show(this, result == null ? "(null)" : result.ToString());
          }));
       }
    }

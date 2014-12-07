@@ -34,7 +34,7 @@ namespace Dargon.Management {
          ISocketFactory socketFactory = new SocketFactory(tcpEndPointFactory, networkingInternalFactory);
          INetworkingProxy networkingProxy = new NetworkingProxy(socketFactory, tcpEndPointFactory);
 
-         const int port = 21337;
+         const int port = 21000;
          Console.WriteLine("Start dummy management server at port {0}.".F(port));
          var serverEndpoint = tcpEndPointFactory.CreateAnyEndPoint(port);
          IMessageFactory messageFactory = new MessageFactory();

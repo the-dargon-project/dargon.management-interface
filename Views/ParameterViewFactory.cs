@@ -10,6 +10,8 @@ namespace Dargon.Management.Views {
                return new MobStringParameterValueView(viewModel);
             case ReservedTypeId.TYPE_S32:
                return new MobInt32ParameterValueView(viewModel);
+            case ReservedTypeId.TYPE_S64:
+               return new MobInt64ParameterValueView(viewModel);
             default:
                return new MobUnsupportedParameterValueView();
          }

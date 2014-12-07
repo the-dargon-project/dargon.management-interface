@@ -94,6 +94,12 @@
     <Compile Include="ViewModels\MobsTreeViewNodeType.cs" />
     <Compile Include="ViewModels\MobViewModel.cs" />
     <Compile Include="ViewModels\MobsRootViewModel.cs" />
+    <Compile Include="Views\MobInt64ParameterValueView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MobInt64ParameterValueView.Designer.cs">
+      <DependentUpon>MobInt64ParameterValueView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MobOperationsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MobInt64ParameterValueView.resx">
+      <DependentUpon>MobInt64ParameterValueView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MobOperationsView.resx">
       <DependentUpon>MobOperationsView.cs</DependentUpon>

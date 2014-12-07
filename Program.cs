@@ -35,7 +35,7 @@ namespace Dargon.Management {
          ISocketFactory socketFactory = new SocketFactory(tcpEndPointFactory, networkingInternalFactory);
          INetworkingProxy networkingProxy = new NetworkingProxy(socketFactory, tcpEndPointFactory);
 
-         const int port = 21337;
+         const int port = 31000;
          var parameterViewFactory = new ParameterViewFactory();
          var serverEndpoint = tcpEndPointFactory.CreateLoopbackEndPoint(port);
          IConnectedSocket clientSocket = ConnectToServer(networkingProxy, serverEndpoint);
