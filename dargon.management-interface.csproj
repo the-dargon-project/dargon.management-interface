@@ -86,6 +86,12 @@
     </Compile>
     <Compile Include="Controllers\ConnectionController.cs" />
     <Compile Include="Controllers\IMobsController.cs" />
+    <Compile Include="InvocationResultWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvocationResultWindow.Designer.cs">
+      <DependentUpon>InvocationResultWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagementInterfaceConfiguration.cs" />
     <Compile Include="Models\ConnectionStateViewModel.cs" />
     <Compile Include="Models\MobModel.cs" />
@@ -197,6 +203,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ConnectionWindow.resx">
       <DependentUpon>ConnectionWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvocationResultWindow.resx">
+      <DependentUpon>InvocationResultWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

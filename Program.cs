@@ -64,7 +64,7 @@ namespace Dargon.Management {
          // initialize views
          var parameterViewFactory = new ParameterViewFactory();
          var connectionWindow = new ConnectionWindow(connectionController, configuration, networkingProxy);
-         var window = new MainWindow(rootController, parameterViewFactory, connectionWindow, connectionStateViewModel);
+         var window = new MainWindow(rootController, connectionController, parameterViewFactory, connectionWindow, connectionStateViewModel);
 
          // start main windowing thread
          window.Initialize();
