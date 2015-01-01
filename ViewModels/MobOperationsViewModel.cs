@@ -2,6 +2,8 @@
 using ItzWarty;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using ItzWarty.Comparers;
 
 namespace Dargon.Management.ViewModels {
    public class MobOperationsViewModel {

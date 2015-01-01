@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Dargon.Management.ViewModels {
    public abstract class MobsTreeViewNodeModel {
-      private Dictionary<string, MobsTreeViewNodeModel> childNodesByName = new Dictionary<string, MobsTreeViewNodeModel>();
+      private readonly SortedDictionary<string, MobsTreeViewNodeModel> childNodesByName = new SortedDictionary<string, MobsTreeViewNodeModel>();
       private MobsTreeViewNodeModel parent;
 
       protected MobsTreeViewNodeModel() {

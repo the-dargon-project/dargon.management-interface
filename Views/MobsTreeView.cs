@@ -46,7 +46,12 @@ namespace Dargon.Management.Views {
          } else {
             var nodeView = CreateAndRegisterNodeView(nodeModel);
             BeginInvoke(new Action(() => {
-               parentNodeView.Nodes.Add(nodeView);
+               int insertionIndex = 0;
+               while (insertionIndex < parentNodeView.Nodes.Count && 
+                      String.Compare(parentNodeView.Nodes[insertionIndex].Text, nodeModel.Text, StringComparison.Ordinal) < 0) {
+                  insertionIndex++;
+               }
+               parentNodeView.Nodes.Insert(insertionIndex, nodeView);
                if (parentNodeView.Parent == null) {
                   parentNodeView.Expand();
                }
