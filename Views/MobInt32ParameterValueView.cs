@@ -24,7 +24,7 @@ namespace Dargon.Management.Views {
 
       private void HandleValueChanged(object sender, EventArgs e) {
          if (model != null) {
-            model.Value = numericUpDown.Value;
+            model.Value = (Int32)numericUpDown.Value;
          }
       }
    }

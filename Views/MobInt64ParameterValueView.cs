@@ -36,7 +36,7 @@ namespace Dargon.Management.Views {
             if (model != null) {
                long value;
                if (Int64.TryParse(textBox.Text, out value)) {
-                  model.Value = value;
+                  model.Value = (Int64)value;
                   textBox.BackColor = defaultTextboxBackgroundColor;
                } else {
                   textBox.BackColor = Color.LightPink;
