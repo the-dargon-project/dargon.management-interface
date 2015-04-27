@@ -32,28 +32,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ImpromptuInterface">
-      <HintPath>..\packages\libwarty.proxies-impl.0.0.12\lib\net45\ImpromptuInterface.dll</HintPath>
+    <Reference Include="Dargon.Management.Api">
+      <HintPath>..\packages\Dargon.Management.Api.0.1.2\lib\net45\Dargon.Management.Api.dll</HintPath>
     </Reference>
-    <Reference Include="libdargon.management-api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Dargon.Management.Impl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\libdargon.management-impl.0.0.0\lib\net45\libdargon.management-api.dll</HintPath>
+      <HintPath>..\packages\Dargon.Management.Impl.0.1.3\lib\net45\Dargon.Management.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="libdargon.management-impl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Dargon.PortableObjects">
+      <HintPath>..\packages\Dargon.PortableObjects.0.1.0\lib\net45\Dargon.PortableObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="ImpromptuInterface, Version=6.2.2.0, Culture=neutral, PublicKeyToken=0b1781c923b2975b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\libdargon.management-impl.0.0.0\lib\net45\libdargon.management-impl.dll</HintPath>
+      <HintPath>..\packages\ImpromptuInterface.6.2.2\lib\net40\ImpromptuInterface.dll</HintPath>
     </Reference>
-    <Reference Include="libdpo">
-      <HintPath>..\packages\libdpo.0.0.13\lib\net45\libdpo.dll</HintPath>
+    <Reference Include="ItzWarty.Commons">
+      <HintPath>..\packages\ItzWarty.Commons.0.1.1\lib\portable-net45+netcore45+MonoAndroid1+MonoTouch1\ItzWarty.Commons.dll</HintPath>
     </Reference>
-    <Reference Include="libwarty">
-      <HintPath>..\packages\libdpo.0.0.13\lib\net45\libwarty.dll</HintPath>
+    <Reference Include="ItzWarty.Proxies.Api">
+      <HintPath>..\packages\ItzWarty.Proxies.Api.0.1.0\lib\net45\ItzWarty.Proxies.Api.dll</HintPath>
     </Reference>
-    <Reference Include="libwarty.proxies-api">
-      <HintPath>..\packages\libdpo.0.0.13\lib\net45\libwarty.proxies-api.dll</HintPath>
-    </Reference>
-    <Reference Include="libwarty.proxies-impl">
-      <HintPath>..\packages\libwarty.proxies-impl.0.0.12\lib\net45\libwarty.proxies-impl.dll</HintPath>
+    <Reference Include="ItzWarty.Proxies.Impl">
+      <HintPath>..\packages\ItzWarty.Proxies.Impl.0.1.0\lib\net45\ItzWarty.Proxies.Impl.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>

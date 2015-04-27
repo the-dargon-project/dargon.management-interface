@@ -37,18 +37,13 @@ namespace Dargon.Management {
          const int port = 21000;
          Console.WriteLine("Start dummy management server at port {0}.".F(port));
          var serverEndpoint = tcpEndPointFactory.CreateAnyEndPoint(port);
-         IMessageFactory messageFactory = new MessageFactory();
-         IManagementSessionFactory managementSessionFactory = new ManagementSessionFactory(collectionFactory, threadingProxy, pofSerializer, messageFactory);
-         ILocalManagementServerContext serverContext = new LocalManagementServerContext(collectionFactory, managementSessionFactory);
-         IManagementContextFactory managementContextFactory = new ManagementContextFactory(pofContext);
-         ILocalManagementRegistry serverRegistry = new LocalManagementRegistry(pofSerializer, managementContextFactory, serverContext);
          IManagementServerConfiguration configuration = new ManagementServerConfiguration(serverEndpoint);
-         var server = new LocalManagementServer(threadingProxy, networkingProxy, managementSessionFactory, serverContext, configuration);
-         server.Initialize();
+         ManagementFactoryImpl managementFactory = new ManagementFactoryImpl(collectionFactory, threadingProxy, networkingProxy, pofContext, pofSerializer);
+         var server = managementFactory.CreateServer(configuration);
 
-         serverRegistry.RegisterInstance(new DummyMob());
-         serverRegistry.RegisterInstance(new HerpMob());
-         serverRegistry.RegisterInstance(new OtherDummyMob());
+         server.RegisterInstance(new DummyMob());
+         server.RegisterInstance(new HerpMob());
+         server.RegisterInstance(new OtherDummyMob());
 
          Console.WriteLine("Dummy management server initialized.");
 

@@ -21,7 +21,6 @@ namespace Dargon.Management.ViewModels {
       }
 
       public void SetCurrentMobViewModel(MobViewModel mobViewModel) {
-         Console.WriteLine("!");
          this.currentMobViewModel = mobViewModel;
          OnMobViewModelChanged();
       }
